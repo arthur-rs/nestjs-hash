@@ -2,11 +2,7 @@
   "name": "nestjs-hash",
   "version": "0.1.0",
   "description": "Hashing library for NestJS",
-  "author": {
-    "name": "Arthur Reis",
-    "email": "arthurreis074@gmail.com",
-    "url": "https://github.com/arthur-rs"
-  },
+  "author": "Arthur Reis <arthurreis074@gmail.com> (https://github.com/arthur-rs)",
   "private": false,
   "license": "MIT",
   "scripts": {
@@ -70,5 +66,25 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arthur-rs/nestjs-hash.git"
+  },
+  "keywords": [
+    "nestjs",
+    "hash",
+    "bcrpyt",
+    "argo2",
+    "security"
+  ],
+  "bugs": {
+    "url": "https://github.com/arthur-rs/nestjs-hash/issues"
+  },
+  "homepage": "https://github.com/arthur-rs/nestjs-hash#readme"
 }
