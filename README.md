@@ -24,50 +24,73 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Hashing library for NestJS.
 
 ## Installation
 
 ```bash
-$ npm install
+$ npm install nestjs-hash
 ```
-
-## Running the app
-
+or
 ```bash
-# development
-$ npm run start
+$ yarn add nestjs-hash
+```
+## Hou to use
 
-# watch mode
-$ npm run start:dev
+### 1 - first add hash module in import for your module
 
-# production mode
-$ npm run start:prod
+Using with native hash
+
+```ts
+  import { HashModule } from 'nestjs-hash';
+
+  @Module({
+    imports: [HashModule.forRoot({ type: 'sha256' })],
+  })
+  export default UsersModule;
+```
+or external library hash
+
+```ts
+  import { HashModule } from 'nestjs-hash';
+
+  @Module({
+    imports: [HashModule.forRoot({ type: 'bcrypt', rounds: 16 })],
+  })
+  export default UsersModule;
 ```
 
-## Test
+**Attention** to use bcrypt or more libraries you need to add them as dependencies to your project.
 
+- bcrypt  
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ npm install bcrypt
+```
+- argon2
+```bash
+$ npm install argon2
 ```
 
-## Support
+2 - second uses dependency injection to add the hash service to your service
+```ts
+  @Injectable()
+  export class UsersService() {
+    constructor(
+      private readonly hashService: HashService,
+      private readonly usersRepository: UsersRepository
+    ) {}
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+    public async createUser(data) {
+      data.password = await this.hashService.hash(data.password);
+      this.usersRepository.create(data);
+    }
+  };
+```
 
-## Stay in touch
+## Author
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Created with more love by [Arthur Reis](https://github.com/arthur-rs)
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+[MIT licensed](LICENSE).

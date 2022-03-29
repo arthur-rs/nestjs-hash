@@ -1,6 +1,6 @@
 {
   "name": "nestjs-hash",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Hashing library for NestJS",
   "author": "Arthur Reis <arthurreis074@gmail.com> (https://github.com/arthur-rs)",
   "private": false,
