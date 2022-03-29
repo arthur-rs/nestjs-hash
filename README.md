@@ -81,8 +81,12 @@ $ npm install argon2
     ) {}
 
     public async createUser(data) {
-      data.password = await this.hashService.hash(data.password);
-      this.usersRepository.create(data);
+      const passwordHash = await this.hashService.hash(data.password);
+      const user = await this.usersRepository.create({
+        ...data,
+        password: passwordHash
+      });
+      return user;
     }
   };
 ```
