@@ -1,30 +1,40 @@
-import { createHash, Hash } from 'crypto';
-import { HashProvider, NativeHashType } from '../interfaces/provider';
+import { createHash } from 'crypto';
+import { Inject, Injectable } from '@nestjs/common';
 
+import { HASH_PROVIDER_OPTIONS } from '@lib/data/tokens';
+
+import { HashProvider } from '@lib/types/hash-provider';
+import { GenericProviderOptions } from '@lib/types/hash-providers-options';
+
+@Injectable()
 export class NativeHashProvider implements HashProvider {
-  private readonly digest: Hash;
-
-  constructor(hashType: NativeHashType) {
-    this.digest = createHash(hashType);
+  constructor(
+    @Inject(HASH_PROVIDER_OPTIONS)
+    private readonly options: GenericProviderOptions,
+  ) {
+    if (!this.options.type) {
+      throw new Error('Hash type not sent in native hash provider.');
+    }
   }
 
   hash(plainText: string): Promise<string> {
-    this.digest.update(plainText);
-    return Promise.resolve(this.digest.digest('hex'));
+    const hashValue = createHash(this.options.type)
+      .update(plainText)
+      .digest('hex');
+    return Promise.resolve(hashValue);
   }
 
   hashSync(plainText: string): string {
-    this.digest.update(plainText);
-    return this.digest.digest('hex');
+    return createHash(this.options.type).update(plainText).digest('hex');
   }
 
   compare(plainText: string, hash: string): Promise<boolean> {
-    const hashedValue = this.hashSync(plainText);
-    return Promise.resolve(hashedValue === hash);
+    const valueHashed = this.hashSync(plainText);
+    return Promise.resolve(valueHashed === hash);
   }
 
   compareSync(plainText: string, hash: string): boolean {
-    const hashedValue = this.hashSync(plainText);
-    return hashedValue === hash;
+    const valueHashed = this.hashSync(plainText);
+    return valueHashed === hash;
   }
 }
