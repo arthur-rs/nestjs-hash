@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import { createHash } from 'crypto';
 
 import {
   Controller,
@@ -10,9 +11,7 @@ import {
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
 
-import { HashModule } from '../lib/hash.module';
-import { HashService } from '../lib/hash.service';
-import { createHash } from 'crypto';
+import { HashModule, HashService } from 'nestjs-hash';
 
 const MESSAGE = 'Hello World!';
 

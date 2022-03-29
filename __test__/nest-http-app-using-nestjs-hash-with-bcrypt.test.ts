@@ -11,8 +11,7 @@ import {
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
 
-import { HashModule } from '../lib/hash.module';
-import { HashService } from '../lib/hash.service';
+import { HashModule, HashService } from 'nestjs-hash';
 
 const MESSAGE = 'Hello World!';
 

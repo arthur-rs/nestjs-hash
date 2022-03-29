@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "declaration": true,
     "removeComments": true,
     "noLib": false,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -16,8 +16,9 @@
     "paths": {
       "@lib/*": ["./lib/*"],
       "@test/*": ["./__test__/*"]
-    }
+    },
+    "plugins": [{ "transform": "@zerollup/ts-transform-paths" }],
   },
-  "include": ["lib/**/*", "__test__/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

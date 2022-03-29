@@ -1,13 +1,26 @@
 # source
+lib
 tests
 index.ts
 package-lock.json
 tslint.json
 tsconfig.json
 .prettierrc
+README.md
+rollup.config.js
+.editorconfig
+.eslintignore
+.eslintrc.js
+jest-e2e.config.js
+jest.config.js
+__test__
+tsconfig.eslint.json
+tsconfig.build.json
+coverage
 
 # github
 .github
+.gitignore
 CONTRIBUTING.md
 renovate.json
 
