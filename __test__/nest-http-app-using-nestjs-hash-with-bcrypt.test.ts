@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import * as bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 
 import {
   Controller,
