@@ -11,8 +11,13 @@
     "sourceMap": false,
     "outDir": "./dist",
     "rootDir": "./lib",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@lib/*": ["./lib/*"],
+      "@test/*": ["./__test__/*"]
+    }
   },
-  "include": ["lib/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts", "tests"]
+  "include": ["lib/**/*", "__test__/**/*"],
+  "exclude": ["node_modules"]
 }
